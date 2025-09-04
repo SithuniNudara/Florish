@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Florish - Organic Herbal Products</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="assets/css/Single-Product.css"/>
+        <link rel="stylesheet" href="assets/css/Index.css"/>
+        <!--Logo-->
+        <link rel="icon" type="image/x-icon" href="assets/Resources/logo.png">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    </head>
+
+    <body onload="loadData(); MyCart();">
+        <!-- Navigation -->
+        <header></header>
+
+        <!-- Product Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Product Images -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="product-gallery">
+                            <img src="https://www.dummyimage.com/600x400/000/fff" class="img-fluid rounded" alt="Organic Lavender Essential Oil"
+                                 id="mainProductImage">
+                        </div>
+                        <div class="product-thumbnails d-flex">
+                            <div class="product-thumbnail active me-2">
+                                <img src="https://www.dummyimage.com/600x400/000/fff" class="img-fluid rounded" width="80" onclick="changeImage(this)" id="image1">
+                            </div>
+                            <div class="product-thumbnail me-2">
+                                <img src="https://www.dummyimage.com/600x400/000/fff" class="img-fluid rounded" width="80" onclick="changeImage(this)" id="image2">
+                            </div>
+                            <div class="product-thumbnail">
+                                <img src="https://www.dummyimage.com/600x400/000/fff" class="img-fluid rounded" width="80" onclick="changeImage(this)" id="image3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="col-lg-6 mb-4">
+                        <h1 class="product-title mb-3" id="product-title">Organic Lavender Essential Oil</h1>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                <span class="product-price" id="product-price">$24.99</span>
+                            </div>
+
+                            <div class="rating-number" id="rating-number">
+                                0/10
+                            </div>
+                        </div>
+
+                        <div id="product-intro"> 
+                            <p id="big-para"></p>
+                        </div>
+                        <ul class="product-meta mb-4">
+                            <li><i class="fas fa-check-circle"></i> <strong>Category: </strong> <span id="product-cat">Essential Oils</span></li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Volume: </strong><span id="product-volume"> 30ml</span></li>
+                            <li><i class="fas fa-check-circle"></i> <strong>In Stock: </strong><span id="product-display-qty">15</span>  units available</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Certified:</strong> USDA Organic, EcoCert</li>
+                        </ul>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="quantity-selector me-3">
+                                <label class="form-label">Quantity</label>
+                                <div class="input-group pro-qty">
+                                    <button class="btn btn-outline-secondary btn-minus" type="button">-</button>
+                                    <input type="number" class="form-control text-center" id="add-to-cart-qty" value="1" min="1" readOnly>
+                                    <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-lg mt-3" id="add-to-cart-main">
+                                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Tabs -->
+                <div class="row product-tabs">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                        data-bs-target="#description" type="button">Description</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
+                                        type="button">Reviews</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content p-3 border-top-0 border" id="productTabsContent">
+                            <div class="tab-pane fade show active" id="description" role="tabpanel">
+                                <h4 class="card-title mb-4">Product Details</h4>
+                                <p id="product-description"></p>
+
+
+                            </div>
+
+
+
+                            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                <h4 class="card-title mb-4">Customer Reviews</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Similar Products -->
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <h3 class="mb-4">You May Also Like</h3>
+                        <div class="row related-products" id="related-products">
+                            <div class="col-md-3 mb-4" id="related-product">
+                                <div class="card h-100">
+                                    <img src="https://www.dummyimage.com/600x400/000/fff"
+                                         class="card-img-top" alt="Peppermint Oil">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Peppermint Essential Oil</h5>
+                                        <p class="card-text">$19.99</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary btn-sm w-100" id="similer-product-add-to-cart">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://www.dummyimage.com/600x400/000/fff"
+                                         class="card-img-top" alt="Chamomile Tea">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Organic Chamomile Tea</h5>
+                                        <p class="card-text">$12.99</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary btn-sm w-100" id="similer-product-add-to-cart">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://www.dummyimage.com/600x400/000/fff"
+                                         class="card-img-top" alt="Eucalyptus Oil">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Eucalyptus Essential Oil</h5>
+                                        <p class="card-text">$22.99</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary btn-sm w-100" id="similer-product-add-to-cart">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://www.dummyimage.com/600x400/000/fff"
+                                         class="card-img-top" alt="Lavender Soap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lavender Handmade Soap</h5>
+                                        <p class="card-text">$8.99</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary btn-sm w-100" id="similer-product-add-to-cart">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Benefits Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2>Why Choose Florish?</h2>
+                        <p class="lead">Our commitment to quality and sustainability</p>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h5>100% Organic</h5>
+                            <p>All our herbs are grown without synthetic pesticides or fertilizers</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h5>Lab Tested</h5>
+                            <p>Every batch is tested for purity and therapeutic quality</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-globe-europe"></i>
+                            </div>
+                            <h5>Sustainably Sourced</h5>
+                            <p>Ethically harvested with respect for people and planet</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h5>Customer Love</h5>
+                            <p>Thousands of satisfied customers worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Offcanvas -->
+        <div class="offcanvas offcanvas-end offcanvas-cart" tabindex="-1" id="offcanvasCart">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Your Cart <span id="items"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="list-group mb-3" id="cart-items-list">
+
+                </div>
+
+                <!-- Totals -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span id="subtotal">Rs. 0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span id="total">Rs. 0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <button class="btn btn-florish w-100 mb-2" onclick="window.location = 'Checkout.html'">Proceed to Checkout</button>
+                <button class="btn btn-outline-secondary w-100" onclick="window.location = 'index.html'">Continue Shopping</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white pt-5 pb-4">
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- tostify -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <!-- Custom JS -->
+        <script src="assets/js/Single-Product.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+    </body>
+
+</html>

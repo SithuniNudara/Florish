@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-store"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <title>Login - Florish</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="assets/css/Sign-In.css"/>
+        <!--Logo-->
+        <link rel="icon" type="image/x-icon" href="assets/Resources/logo.png">
+    </head>
+    <body>
+        <div class="login-container">
+            <!-- Full-Screen Product Slider -->
+            <div class="slider-section">
+                <div class="product-slider">
+                    <div class="slide active" style="background-image: url('assets/Resources/Slide5.jpg')">
+                        <div class="slide-content">
+                            <h3>Nourishing Herbal Hair Oil</h3>
+                            <p>Revitalize your hair with our natural blend of 18 herbs and essential oils</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('assets/Resources/Slide7.jpg')">
+                        <div class="slide-content">
+                            <h3>Organic Face Cream</h3>
+                            <p>Hydrate and protect your skin with our antioxidant-rich formula</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('assets/Resources/Slide6.jpg')">
+                        <div class="slide-content">
+                            <h3>Ayurvedic Body Lotion</h3>
+                            <p>Nourish your skin with the goodness of aloe vera and neem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-section">
+                <div class="login-card">
+                    <div class="logo">Florish</div>
+                    <h2 class="text-center mb-4">Welcome Back</h2>
+
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="forgot-password">
+                            <a href="#" id="forgotPassword">Forgot Password?</a>
+                        </div>
+
+                        <button type="button" class="btn btn-login" onclick="SignIn(event);">Sign In</button>
+
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="Sign-Up.html" style="color: var(--primary-color);">Sign up</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Popup: "Verify Your Email" -->
+        <div class="verification-modal" id="verificationModal">
+            <div class="verification-content">
+                <h3><i class="fas fa-envelope-circle-check me-2"></i>Verify Your Email</h3>
+                <p>We've sent a 6-digit verification code to your email address. Please check your inbox.</p>
+                <button class="btn btn-verify" id="showCodeModalBtn">Enter Verification Code</button>
+                <button class="btn btn-outline-secondary ms-2" id="closeModalBtn">Close</button>
+            </div>
+        </div>
+
+        <!-- Second Popup: "Enter 6-Digit Verification Code" -->
+        <div class="verification-modal" id="verificationCodeModal">
+            <div class="verification-content">
+                <h3><i class="fas fa-shield-alt me-2"></i>Enter Verification Code</h3>
+                <p>Check your email for the 6-digit code</p>
+
+                <div class="verification-code-container">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="verification-code-input" maxlength="1" pattern="[0-9]">
+                </div>
+
+                <button class="btn btn-verify" id="submitCodeBtn" >Verify & Continue</button>
+                <button class="btn btn-outline-secondary ms-2" id="resendCodeBtn">Resend Code</button>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- Custom JavaScript -->
+        <script src="assets/js/Sign-In.js"></script>
+    </body>
+</html>

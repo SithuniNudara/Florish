@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-store"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <title>My Account - Florish</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/My-Account.css"/>
+        <link rel="stylesheet" href="assets/css/header.css"/>
+        <!--Logo-->
+        <link rel="icon" type="image/x-icon" href="assets/Resources/logo.png">
+    </head>
+    <body onload="loadData();">
+        <header>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="account-sidebar">
+                        <img src="https://randomuser.me/api/portraits/lego/5.jpg" class="profile-img" alt="Profile">
+                        <h5 class="text-center mb-1" id="hello">Hello, User</h5>
+                        <p class="text-muted text-center small mb-4" id="since">Member since Jul 2025</p>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#account-details" data-bs-toggle="tab">
+                                    <i class="fas fa-user"></i> Account Details
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#my-orders" data-bs-toggle="tab">
+                                    <i class="fas fa-shopping-bag"></i> My Orders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#address-book" data-bs-toggle="tab">
+                                    <i class="fas fa-map-marker-alt"></i> Address Book
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#change-password" data-bs-toggle="tab">
+                                    <i class="fas fa-lock"></i> Change Password
+                                </a>
+                            </li>
+                            <li class="nav-item" onclick="signOut();">
+                                <a class="nav-link" href="#" >
+                                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="col-lg-9">
+                    <div class="tab-content account-content">
+                        <!-- Account Details Tab -->
+                        <div class="tab-pane fade show active" id="account-details">
+                            <h3 class="section-title">Account Details</h3>
+
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="Ex: john">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Ex: Deo">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Ex: example@gmail.com" readonly>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <label for="phone1" class="form-label">Primary Mobile Number</label>
+                                        <input type="text" class="form-control" id="phone1" placeholder="Ex:0742746852">
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label for="phone2" class="form-label">Secondary Mobile Number</label>
+                                        <input type="text" class="form-control" id="phone2"  placeholder="Ex:0742746852">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="registeredDate" class="form-label">Registered Date</label>
+                                    <input type="date" class="form-control" id="registeredDate" readonly>
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-florish" onclick="updateUserProfile(event);">Update Profile</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- My Orders Tab -->
+                        <div class="tab-pane fade" id="my-orders" >
+                            <div id="pdf-content">
+                                <h3 class="section-title">My Orders</h3>
+
+                                <table class="table table-borderless mb-3 order-card shadow-sm rounded"  id="orderTable" style="width:100%; border-collapse: collapse;">
+                                    <tbody id="container">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class=" btn btn-florish" onclick="downloadPDF();">Print Order Report</button>
+                        </div>
+
+                        <!-- Address Book Tab -->
+                        <div class="tab-pane fade" id="address-book">
+                            <h3 class="section-title">Address Book</h3>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <p class="card-title">Shipping Address Area</p>
+                                            <hr/>
+
+                                            <div class="col-12 card">
+                                                <div class="row">
+                                                    <div class="col-12 card-body">
+                                                        <address class="col-6 p-2">
+                                                            <p id="addName">Username</p>
+                                                            <p id="lineOne">Address Line 1</p>
+                                                            <p id="lineTwo">Address Line 2</p>
+                                                            <p id="postalCode">Postal Code</p>
+                                                            <p id="city">City</p>
+                                                            <p id="receiverMobile">Contact Number</p>
+                                                        </address>
+                                                        <div class="d-flex gap-2">
+                                                            <button class="btn btn-sm btn-florish" onclick="edit();">Edit</button>
+                                                            <button class="btn btn-sm btn-outline-secondary" onclick="deleteAddress();">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Add New Address</h5>
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Receiver's Name</label>
+                                                    <input type="text" class="form-control" id="receiverName">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address Line 1</label>
+                                                    <input type="text" class="form-control" id="line_1">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address Line 2</label>
+                                                    <input type="text" class="form-control" id="line_2">
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">City</label>
+                                                        <select class="form-select" id="cityId" required>
+                                                            <option value="" disabled selected>Select your city</option>
+                                                            <!-- Options will be populated by JavaScript -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Postal Code</label>
+                                                        <input type="text" class="form-control" id="postal_code">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Phone</label>
+                                                    <input type="tel" class="form-control" id="mobilenum">
+                                                </div>
+                                                <button type="button" class="btn btn-florish" onclick="saveAddressBook(event);">Save Address</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Change Password Tab -->
+                        <div class="tab-pane fade" id="change-password">
+                            <h3 class="section-title">Change Password</h3>
+
+                            <form>
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="currentPassword" onclick="this.type='text'" onblur="this.type='password'">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword">
+                                    <div class="form-text">Must be at least 8 characters</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-florish" onclick="changePassword(event);">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Cart Offcanvas -->
+        <div class="offcanvas offcanvas-end offcanvas-cart" tabindex="-1" id="offcanvasCart">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Your Cart <span id="items"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="list-group mb-3" id="cart-items-list">
+
+                </div>
+
+                <!-- Totals -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span id="subtotal">Rs. 0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span id="total">Rs. 0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <button class="btn btn-florish w-100 mb-2" onclick="window.location = 'Checkout.html'">Proceed to Checkout</button>
+                <button class="btn btn-outline-secondary w-100" onclick="window.location = 'index.html'">Continue Shopping</button>
+            </div>
+        </div>
+
+        <div id="ratingPopup" class="rating-popup">
+            <div class="rating-popup-content">
+                <button id="closeRatingPopup" class="close-btn">&times;</button>
+
+                <div class="product-header">
+                    <img id="popupProductImage" src="" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h3 id="popupProductName"></h3>
+                        <span id="popupProductCategory" class="category-badge"></span>
+                    </div>
+                </div>
+
+                <p id="popupProductDescription" class="product-description"></p>
+
+                <div class="rating-section">
+                    <h4>Rate this product</h4>
+                    <div class="rating-stars">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="6">★</span>
+                        <span class="star" data-value="7">★</span>
+                        <span class="star" data-value="8">★</span>
+                        <span class="star" data-value="9">★</span>
+                        <span class="star" data-value="10">★</span>
+                    </div>
+                    <div class="rating-value">
+                        <span id="selectedRating">0</span>/10
+                    </div>
+                </div>
+
+                <textarea id="ratingComment" placeholder="Add your review (optional)" class="rating-comment"></textarea>
+
+                <button id="submitRating" class="submit-btn">Submit Rating</button>
+            </div>
+        </div>
+
+
+
+
+        <footer class="bg-dark text-white pt-5 pb-4">
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script src="assets/js/My-Account.js"></script>
+        <script src="assets/js/Sign-Out.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+    </body>
+</html>
